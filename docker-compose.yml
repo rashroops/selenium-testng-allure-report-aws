@@ -1,0 +1,13 @@
+version: '3'
+services:
+  selenoid:
+    image: aerokube/selenoid:latest
+    container_name: selenoid
+    network_mode: bridge
+    ports:
+      - "4444:4444"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./selenoid:/etc/selenoid"
+      - "./selenoid/video:/opt/selenoid/video"
+    command: ["-limit", "5", "-enable-file-upload", "-video-output-dir", "/opt/selenoid/video"]
